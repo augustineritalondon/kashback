@@ -1,0 +1,21 @@
+footer{
+    margin-top: 100px;
+    background-color: #f7f7fa;
+    padding: 30px 10px;
+    padding-top: 50px;
+}
+
+footer h1{
+    color: #0a3d62;
+    font-weight: 700;
+}
+
+footer h5{
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+footer ul li{
+    font-size: 14px;
+}

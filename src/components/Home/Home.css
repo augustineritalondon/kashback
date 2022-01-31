@@ -1,0 +1,248 @@
+img{
+    width: 100%;
+}
+
+.home img{
+    margin-top: 6em;
+    border-radius: 30px;
+}
+.carousel-control-prev-icon{
+    display: none;
+}
+.carousel-control-next-icon{
+    display: none;
+}
+
+.subHeader{
+    letter-spacing: 1px;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 1;
+    padding-top: 100px;
+}
+
+ul{
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+ul li i{
+    margin-right: 20px;
+    color: #0a3d62;
+}
+
+button{
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+}
+
+h2{
+    font-size: 24px;
+    text-align: center;
+    color: #000;
+    font-weight: 700;
+}
+
+h3{
+    color: #4b4f52;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h4{
+    color: #4b4f52;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.how_it_works{
+    text-align: center;
+}
+
+.how_it_works .how_icons{
+    margin-top: 40px;
+}
+
+.how_it_works .how_icons i{
+    background-color: #fff;
+    box-shadow: 2px 2px 30px rgba(122, 122, 122, 0.233);
+    padding: 20px;
+    font-size: 40px;
+    border-radius: 20px;
+    color: #0a3d62;
+    margin-bottom: 30px;
+}
+
+hr{
+    margin-top: 160px;
+    padding-top: 2px;
+}
+
+.advantages_carousel{
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.advantage_none_carousel{
+    display: none;
+}
+
+.advantage_item_flex{
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.advantage_item_flex i{
+    margin-right: 15px;
+    color: #24b57a;
+    background-color: #c4ebdb;
+    font-size: 12px;
+    padding: 10px 8px;
+    border-radius: 20px;
+}
+
+.accordion-item{
+    margin-bottom: 20px;
+    border: 1px solid #0a3d62!important;
+    box-shadow: 1px 4px 15px #0a3d6233;
+}
+
+.accordion-button:not(.collapsed){
+    background-color: #0a3d62;
+    color: #fff;
+}
+
+.testimonial{
+    margin-top: 100px;
+}
+
+.testimonial .testimonial_item{
+    width: 85%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f7f8fa;
+    border-radius: 20px;
+    box-shadow: 5px 3px 8px #e7eaf4bf;
+    padding: 20px 10px;
+}
+
+.testimonial img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.testimonial h5{
+    color: #000;
+    font-weight: bold;
+}
+
+.contact{
+    margin-top: 150px;
+}
+
+.contact h2{
+    padding-bottom: 50px;
+}
+
+.contact .contact-card{
+    color: #444444;
+    text-align: center;
+    box-shadow: 0 0 30px rgb(214 215 216 / 60%);
+    padding: 20px 0 30px 0;
+    background: #fff;
+    margin-bottom: 30px;
+  }
+  
+  .contact .contact-card i{
+    color: #fd7e14;
+    font-size: 30px;
+  }
+  
+  .contact .contact-card-form{
+    color: #444444;
+    box-shadow: 0 0 30px rgb(214 215 216 / 60%);
+    padding: 20px 20px;
+    background: #fff;
+    margin-bottom: 30px;
+  }
+  
+  .contact .contact-card-form .flex{
+    flex-direction: row;
+  }
+  
+  
+  #myBtn {
+    display: none; 
+    position: fixed; 
+    bottom: 20px; 
+    right: 30px; 
+    width: 40px;
+    height: 40px;
+    z-index: 99;
+    border: none;
+    outline: none; 
+    background-color: #284864;
+    color: #fff; 
+    cursor: pointer;
+    /* padding: 15px;  */
+    border-radius: 50px;
+    font-size: 18px; 
+  }
+  
+  #myBtn:hover {
+    background-color: #ffc107; 
+  }
+
+
+@media (min-width: 997px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl{
+        max-width: 1140px;
+    }
+    .home img{
+        height: 80vh;
+        margin-top: 8em;
+    }
+    .advantages_carousel{
+        display: none;
+    }
+    .advantage_none_carousel{
+        display: flex;
+    }
+
+    .how_it_works{
+        margin-top: 100px;
+    }
+    h2{
+        font-size: 32px;    
+    }
+    h3{
+        font-size: 28px;
+        margin-top: 50px;
+    }
+    ul li{
+        list-style: none;
+        margin-bottom: 25px;
+    }
+    .kashback p{
+        margin-bottom: 30px;
+    }
+
+    .advantages h2{
+        margin-bottom: 50px;
+    }
+
+    .advantages .advantage_item{
+        margin-top: 40px;
+    }
+    
+}
