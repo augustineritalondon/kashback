@@ -13,7 +13,7 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav" style={{marginLeft: "auto"}}>
-                        <Link to="/vendor"><button><a className="nav-link" href="#">Become a Vendor</a></button></Link>
+                        <Link to="/vendor" ><button><span className="nav-link">Become a Vendor </span></button></Link>
                         </div>
                     </div>
                 </div>

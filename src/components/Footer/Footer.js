@@ -30,9 +30,9 @@ const Footer = () => {
                         <div className='col-lg-3 col-md-3 col-6 mt-3'>
                             <h5>Socials</h5>
                             <ul>
-                                <li><i class="fab fa-facebook-f"></i> Facebook</li>
-                                <li><i class="fab fa-twitter"></i> Twitter</li>
-                                <li><i class="fab fa-instagram"></i> Instagram</li>
+                                <li><i className="fab fa-facebook-f"></i> Facebook</li>
+                                <li><i className="fab fa-twitter"></i> Twitter</li>
+                                <li><i className="fab fa-instagram"></i> Instagram</li>
                             </ul>
                         </div>
                     </div>

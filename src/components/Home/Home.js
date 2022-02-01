@@ -26,25 +26,25 @@ const Home = () => {
             <section className='container home'>
                 <div className='mt-3'></div>
                 <div>
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src={image.one} class="d-block w-100" alt="Image 1" />
+                    <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+                        <div className="carousel-inner">
+                            <div className="carousel-item active">
+                                <img src={image.one} className="d-block w-100" alt="Image 1" />
                             </div>
-                            <div class="carousel-item">
-                                <img src={image.two} class="d-block w-100" alt="Image 2" />
+                            <div className="carousel-item">
+                                <img src={image.two} className="d-block w-100" alt="Image 2" />
                             </div>
-                            <div class="carousel-item">
-                                <img src={image.three} class="d-block w-100" alt="Image 3" />
+                            <div className="carousel-item">
+                                <img src={image.three} className="d-block w-100" alt="Image 3" />
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
@@ -56,21 +56,21 @@ const Home = () => {
                     <div className='row'>
                         <div className='col-lg-4 col-md-4 col-12'>
                             <div className='how_icons'>
-                                <i class="fas fa-cogs"></i>
+                                <i className="fas fa-cogs"></i>
                                 <h4>Create account</h4>
                                 <p>Sign up for free on the web, our iOS or Android app and set up your profile.</p>
                             </div>
                         </div>
                         <div className='col-lg-4 col-md-4 col-12'>
                             <div className='how_icons'>
-                                <i class="fas fa-cogs"></i>
+                                <i className="fas fa-cogs"></i>
                                 <h4>Deposit</h4>
                                 <p>Deposit cash or crypto with multiple payment options — Card, bank e.t.c</p>
                             </div>
                         </div>
                         <div className='col-lg-4 col-md-4 col-12'>
                             <div className='how_icons'>
-                                <i class="fas fa-cogs"></i>
+                                <i className="fas fa-cogs"></i>
                                 <h4>Transact</h4>
                                 <p>Send, receive, buy, sell and swap between cryptos and cash.</p>
                             </div>
@@ -92,10 +92,10 @@ const Home = () => {
                             <h3>Accept and securely store bitcoin and other cryptocurrencies.</h3>
                             <p>Now you have an all in one platform to store, buy, sell, send, receive and swap crypto. You will be able to:</p>
                             <ul>
-                                <li><i class="fas fa-sort-up"></i>Buy, sell & trade Multiple cryptocurrencies.</li>
-                                <li><i class="fas fa-sort-up"></i>Buy crypto as low as ₦ 500.</li>
-                                <li><i class="fas fa-sort-up"></i>Swap between crypto. e.g Bitcoin to Ripple.</li>
-                                <li><i class="fas fa-sort-up"></i>Earn free Bitcoin for life by inviting friends</li>
+                                <li><i className="fas fa-sort-up"></i>Buy, sell & trade Multiple cryptocurrencies.</li>
+                                <li><i className="fas fa-sort-up"></i>Buy crypto as low as ₦ 500.</li>
+                                <li><i className="fas fa-sort-up"></i>Swap between crypto. e.g Bitcoin to Ripple.</li>
+                                <li><i className="fas fa-sort-up"></i>Earn free Bitcoin for life by inviting friends</li>
                             </ul>
 
                             <button className='mt-5'>Create an account</button>
@@ -123,7 +123,7 @@ const Home = () => {
                             <div className="item">
                                 <div className='advantage_item'>
                                     <div className='advantage_item_flex'>
-                                        <i class="fas fa-tv"></i>
+                                        <i className="fas fa-tv"></i>
                                         <h4>Intuitive</h4>
                                     </div>
                                     <p>flitaa offers you the most beginner friendly experience you can find.</p>
@@ -132,7 +132,7 @@ const Home = () => {
                             <div className="item">
                                 <div className='advantage_item'>
                                     <div className='advantage_item_flex'>
-                                        <i class="fas fa-tv"></i>
+                                        <i className="fas fa-tv"></i>
                                         <h4>Fast</h4>
                                     </div>
                                     <p>Built with best practices to deliver a fast crypto user experience.</p>
@@ -141,7 +141,7 @@ const Home = () => {
                             <div className="item">
                                 <div className='advantage_item'>
                                     <div className='advantage_item_flex'>
-                                        <i class="fas fa-tv"></i>
+                                        <i className="fas fa-tv"></i>
                                         <h4>Funds Safety</h4>
                                     </div>
                                     <p>Your wallet is protected on multiple layers of security to prevent theft.</p>
@@ -150,7 +150,7 @@ const Home = () => {
                             <div className="item">
                                 <div className='advantage_item'>
                                     <div className='advantage_item_flex'>
-                                        <i class="fas fa-tv"></i>
+                                        <i className="fas fa-tv"></i>
                                         <h4>Multi-assets</h4>
                                     </div>
                                     <p>Your one stop wallet for the most popular tokens available.</p>
@@ -159,7 +159,7 @@ const Home = () => {
                             <div className="item">
                                 <div className='advantage_item'>
                                     <div className='advantage_item_flex'>
-                                        <i class="fas fa-tv"></i>
+                                        <i className="fas fa-tv"></i>
                                         <h4>Swap</h4>
                                     </div>
                                     <p>Swap seamlessly between tokens of your choice in milli-seconds.</p>
@@ -168,7 +168,7 @@ const Home = () => {
                             <div className="item">
                                 <div className='advantage_item'>
                                     <div className='advantage_item_flex'>
-                                        <i class="fas fa-tv"></i>
+                                        <i className="fas fa-tv"></i>
                                         <h4>Earn</h4>
                                     </div>
                                     <p>You earn for life when you invite your friends to transact on flitaa.</p>
@@ -182,7 +182,7 @@ const Home = () => {
                                 <div className='col-lg-4 col-md-4 col-12'>
                                     <div className='advantage_item'>
                                         <div className='advantage_item_flex'>
-                                            <i class="fas fa-tv"></i>
+                                            <i className="fas fa-tv"></i>
                                             <h4>Intuitive</h4>
                                         </div>
                                         <p>flitaa offers you the most beginner friendly experience you can find.</p>
@@ -191,7 +191,7 @@ const Home = () => {
                                 <div className='col-lg-4 col-md-4 col-12'>
                                     <div className='advantage_item'>
                                         <div className='advantage_item_flex'>
-                                            <i class="fas fa-tv"></i>
+                                            <i className="fas fa-tv"></i>
                                             <h4>Fast</h4>
                                         </div>
                                         <p>Built with best practices to deliver a fast crypto user experience.</p>
@@ -200,7 +200,7 @@ const Home = () => {
                                 <div className='col-lg-4 col-md-4 col-12'>
                                     <div className='advantage_item'>
                                         <div className='advantage_item_flex'>
-                                            <i class="fas fa-tv"></i>
+                                            <i className="fas fa-tv"></i>
                                             <h4>Funds Safety</h4>
                                         </div>
                                         <p>Your wallet is protected on multiple layers of security to prevent theft.</p>
@@ -209,7 +209,7 @@ const Home = () => {
                                 <div className='col-lg-4 col-md-4 col-12'>
                                     <div className='advantage_item'>
                                         <div className='advantage_item_flex'>
-                                            <i class="fas fa-tv"></i>
+                                            <i className="fas fa-tv"></i>
                                             <h4>Multi-assets</h4>
                                         </div>
                                         <p>Your one stop wallet for the most popular tokens available.</p>
@@ -218,7 +218,7 @@ const Home = () => {
                                 <div className='col-lg-4 col-md-4 col-12'>
                                     <div className='advantage_item'>
                                         <div className='advantage_item_flex'>
-                                            <i class="fas fa-tv"></i>
+                                            <i className="fas fa-tv"></i>
                                             <h4>Swap</h4>
                                         </div>
                                         <p>Swap seamlessly between tokens of your choice in milli-seconds.</p>
@@ -227,7 +227,7 @@ const Home = () => {
                                 <div className='col-lg-4 col-md-4 col-12'>
                                     <div className='advantage_item'>
                                         <div className='advantage_item_flex'>
-                                            <i class="fas fa-tv"></i>
+                                            <i className="fas fa-tv"></i>
                                             <h4>Earn</h4>
                                         </div>
                                         <p>You earn for life when you invite your friends to transact on flitaa.</p>
@@ -248,43 +248,43 @@ const Home = () => {
                 <div className='faq'>
                     <h5 className='subHeader'>Resources</h5>
                     <h2>FAQ</h2>
-                    <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div clasNames="accordion" id="accordionExample">
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingOne">
+                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Question #1
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
+                            <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
                                     <strong>This is the first item's accordion body.</strong> It is shown by default,
                                     until the collapse plugin adds the appropriate classes that we use to style each element.
                                     <code>.accordion-body</code>, though the transition does limit overflow.
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingTwo">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     Accordion Item #2
                                 </button>
                             </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
+                            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
                                     <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
                                     plugin adds the appropriate classes that we use to style each element. It's also worth noting that just about
                                     any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingThree">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     Accordion Item #3
                                 </button>
                             </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
+                            <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
                                     <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate
                                     classes that we use to style each element. It's also worth noting that just about any HTML can go within the
                                     <code>.accordion-body</code>, though the transition does limit overflow.
@@ -296,23 +296,23 @@ const Home = () => {
 
 
                 <div className='testimonial'>
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
+                    <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+                        <div className="carousel-inner">
+                            <div className="carousel-item active">
                                 <div className='testimonial_item'>
                                     <img src={image.testimonialImage1} />
                                     <p>Yeah, I was a bit lost at first. I’m used to Binance and all its complications. But Flitaa is easier. A heads up: If this team keep giving positive vibe and everything is going smoothly, they will get more clients… Their P2P service must be upgraded. But it’s good for now. Very good. Thanks.</p>
                                     <h5>John Doe</h5>
                                 </div>
                             </div>
-                            <div class="carousel-item">
+                            <div className="carousel-item">
                                 <div className='testimonial_item'>
                                     <img src={image.testimonialImage1} />
                                     <p>I’m used to Binance and all its complications. But Flitaa is easier. A heads up: If this team keep giving positive vibe and everything is going smoothly, they will get more clients… Their P2P service must be upgraded. But it’s good for now. Very good. Thanks.</p>
                                     <h5>Janie Doe</h5>
                                 </div>
                             </div>
-                            <div class="carousel-item">
+                            <div className="carousel-item">
                                 <div className='testimonial_item'>
                                     <img src={image.testimonialImage1} />
                                     <p>But Flitaa is easier. A heads up: If this team keep giving positive vibe and everything is going smoothly, they will get more clients… Their P2P service must be upgraded. But it’s good for now. Very good. Thanks.</p>
@@ -320,13 +320,13 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
@@ -367,23 +367,23 @@ const Home = () => {
                                 <form action="">
                                     <div className="row">
                                         <div className="col">
-                                            <input type="text" class="form-control" placeholder="First name"
+                                            <input type="text" className="form-control" placeholder="First name"
                                                 aria-label="First name" />
                                         </div>
-                                        <div class="col">
-                                            <input type="text" class="form-control" placeholder="Last name"
+                                        <div className="col">
+                                            <input type="text" className="form-control" placeholder="Last name"
                                                 aria-label="Last name" />
                                         </div>
                                     </div>
-                                    <div class="row mt-3">
+                                    <div className="row mt-3">
                                         <div className="col">
-                                            <input type="text" class="form-control" placeholder="Subject"
+                                            <input type="text" className="form-control" placeholder="Subject"
                                                 aria-label="First name" />
                                         </div>
                                     </div>
                                     <div className="row mt-3">
-                                        <div class="col">
-                                            <textarea type="text" class="form-control" rows="4" cols="50"
+                                        <div className="col">
+                                            <textarea type="text" className="form-control" rows="4" cols="50"
                                                 placeholder="Message"></textarea>
                                         </div>
                                     </div>
