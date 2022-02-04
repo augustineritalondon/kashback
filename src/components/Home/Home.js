@@ -50,7 +50,7 @@ const Home = () => {
                 </div>
 
 
-                <div className='how_it_works'>
+                <div className='how_it_works' id="how_it_works">
                     <h5 className='subHeader'>How it works</h5>
                     <h2>Start using cryptocurrency in <span style={{ color: "#24b57a" }}>three easy steps.</span></h2>
                     <div className='row'>
@@ -109,7 +109,7 @@ const Home = () => {
                 </div>
 
 
-                <div className='advantages'>
+                <div className='advantages' id='advantages'>
                     <h5 className='subHeader'>Advantages</h5>
                     <h2>Why your friends <span style={{ color: "#24b57a" }}> switched </span>to flitaa.</h2>
 
@@ -245,7 +245,7 @@ const Home = () => {
                 </div>
 
 
-                <div className='faq'>
+                <div className='faq' id='faq'>
                     <h5 className='subHeader'>Resources</h5>
                     <h2>FAQ</h2>
                     <div clasNames="accordion" id="accordionExample">
@@ -331,7 +331,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="contact">
+                <div className="contact" id='contact'>
                     <h2>Contact Us</h2>
                     <div className="row">
                         <div className="col-lg-6 col-md-6 col-12">

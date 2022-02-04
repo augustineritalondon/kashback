@@ -3,6 +3,10 @@
     padding: 20px 0;
 }
 
+.navbar a{
+    text-decoration: none;
+}
+
 .navbar .navbar-brand{
     color: #0a3d62;
     font-size: 32px;
@@ -22,6 +26,15 @@
 .navbar-collapse button span{
     color: #fff!important;
 }
+
+.navbar-item{
+    font-weight: 700;
+}
+
+.navbar-light .navbar-nav .nav-link.active{
+    color: #24b57a;
+}
+
 
 @media (min-width: 997px) {
     .navbar-collapse button{

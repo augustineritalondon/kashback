@@ -91,22 +91,28 @@ const Vendor = () => {
 
                                     {formStep === 0 && (
                                         <div>
-                                            <div className='row mt-5'>
-                                                <label htmlFor="">Four digit pin:</label>
-                                                <input type="text" className="form-control" placeholder="" aria-label="Cash Back ID" />
+                                            <div className="row">
+                                                <div className=' col-6 mt-5'>
+                                                    <label htmlFor="">Cash back ID:</label>
+                                                    <input type="text" className="form-control" placeholder="" aria-label="Cash Back ID" />
+                                                </div>
+                                                <div className='col-6 mt-5'>
+                                                    <label htmlFor="">Four digit pin:</label>
+                                                    <input type="text" className="form-control" placeholder="" aria-label="Cash Back ID" />
+                                                </div>
                                             </div>
 
                                             <div>
-                                                <h3>Personal Info:</h3>
-                                                <div className='row mt-4'>
+                                                <h5 style={{marginTop: "30px", fontWeight:"bold", color:"#3BB19B"}}>Personal Info:</h5>
+                                                <div className='mt-4'>
                                                     <label htmlFor="">Name:</label>
                                                     <input type="text" className="form-control" placeholder="" aria-label="Name" />
                                                 </div>
-                                                <div className='row mt-4'>
+                                                <div className='mt-4'>
                                                     <label htmlFor="">Phone:</label>
                                                     <input type="text" className="form-control" placeholder="" aria-label="Phone" />
                                                 </div>
-                                                <div className='row mt-4'>
+                                                <div className='mt-4'>
                                                     <label htmlFor="">Email:</label>
                                                     <input type="email" className="form-control" placeholder="" aria-label="Email" />
                                                 </div>
@@ -116,17 +122,17 @@ const Vendor = () => {
 
                                     {formStep === 1 && (
                                         <div>
-                                            <h3>Bank Details</h3>
+                                            <h5 style={{marginTop: "30px", fontWeight:"bold", color:"#3BB19B"}}>Bank Details</h5>
                                             <hr style={{ padding: 0, margin: 0 }} />
-                                            <div className='row mt-4'>
+                                            <div className='mt-4'>
                                                 <label htmlFor="">Bank:</label>
                                                 <input type="text" className="form-control" placeholder="" aria-label="Bank" />
                                             </div>
-                                            <div className='row mt-4'>
+                                            <div className='mt-4'>
                                                 <label htmlFor="">Account Number:</label>
                                                 <input type="text" className="form-control" placeholder="" aria-label="Account" />
                                             </div>
-                                            <div className='row mt-4'>
+                                            <div className='mt-4'>
                                                 <label htmlFor="">Bank Name:</label>
                                                 <input type="text" className="form-control" placeholder="" aria-label="BankName" />
                                             </div>
@@ -135,8 +141,8 @@ const Vendor = () => {
 
                                     {formStep === 2 && (
                                         <div>
-                                            <h3>Identification</h3>
-                                            <div className='row mt-4'>
+                                            <h5 style={{marginTop: "30px", fontWeight:"bold", color:"#3BB19B"}}>Identification</h5>
+                                            <div className='mt-4'>
                                                 <label htmlFor="">Means of Identification:</label>
                                                 <select className="form-select" aria-label="Default select example">
                                                     <option selected></option>
@@ -145,11 +151,11 @@ const Vendor = () => {
                                                     <option value="3">Drivers License</option>
                                                 </select>
                                             </div>
-                                            <div className='row mt-4'>
+                                            <div className='mt-4'>
                                                 <label htmlFor="">Image of ID:</label>
                                                 <input type="file" className="form-control" id="inputGroupFile02" />
                                             </div>
-                                            <div className='row mt-4'>
+                                            <div className='mt-4'>
                                                 <label htmlFor="">Passport</label>
                                                 <input type="file" className="form-control" id="inputGroupFile02" />
                                             </div>
