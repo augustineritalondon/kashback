@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navbar } from '../../components';
 import image from '../../assets/images';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
@@ -23,6 +24,7 @@ const Home = () => {
 
     return (
         <>
+            <Navbar />
             <section className='container home'>
                 <div className='mt-3'></div>
                 <div>

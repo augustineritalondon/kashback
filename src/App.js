@@ -7,7 +7,6 @@ import {Navbar, Home, Vendor, Footer} from './components/index'
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/vendor" element={<Vendor />} />

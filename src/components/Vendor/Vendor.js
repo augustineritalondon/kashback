@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { Navbar2 } from '../../components';
 import image from '../../assets/images';
 import './Vendor.css'
 
@@ -7,17 +8,34 @@ const Vendor = () => {
 
     const [formStep, setFormStep] = useState(0);
 
+    const [cashid, setCashid] = useState('');
+    const [kpin, setKpin] = useState('');
+    const [bankName, setBankName] = useState('');
+    const [accountNumber, setAccountNumber] = useState('');
+    const [accountName, setAccountName] = useState('');
+    const [nID, setNID] = useState('');
+    const [idImage, setIdImage] = useState('')
+    const [errors, setErrors] = useState({
+        status: false,
+        msg: ""
+    })
+    const [banks, setBanks] = useState([]);
+    const [userData, setUserdata] = useState('');
+    const [checking, setChecking] = useState(false);
+
+
     const {
         watch,
         register,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: { wrong, isValid },
     } = useForm({ mode: "all" });
 
 
     const nextStep = (e) => {
         e.preventDefault()
         setFormStep((cur) => cur + 1);
+        getBank();
     };
 
     const prevStep = () => {
@@ -37,6 +55,7 @@ const Vendor = () => {
                         onClick={prevStep}
                     >Prev</button>
                     <button
+                        disabled={!((accountName.length > 0) && (accountNumber.length === 10))}
                         className="nextButton"
                         type="button"
                         value="Next"
@@ -54,7 +73,7 @@ const Vendor = () => {
                         onClick={prevStep}
                     >Prev</button>
                     <button
-                        disabled={!isValid}
+                        disabled={!((nID.length > 0) && (idImage.length > 0))}
                         className="nextButton"
                         type="submit"
                         value="Submit"
@@ -69,17 +88,120 @@ const Vendor = () => {
                     type="button"
                     value="Next"
                     onClick={nextStep}
-                >Next</button>
+                >Confirm</button>
             );
         }
     };
 
+    const checkData = (e, data) => {
+        e.preventDefault();
+
+        if (kpin.length !== 4 || cashid.length !== 10) {
+            console.log("error, please check your code")
+            setErrors({
+                ...errors,
+                status: true,
+                msg: "error, please check your that your cash id and pin is correct"
+            })
+        } else {
+            setChecking(true)
+            setErrors({
+                ...errors,
+                status: true,
+                msg: "A network error"
+            })
+            console.log("its working here")
+
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = {
+                id: cashid,
+                pin: kpin
+            };
+
+            var requestOptions = {
+                method: 'POST',
+                body: JSON.stringify(raw),
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch("https://buzz-servre.herokuapp.com/api/v1/vendor/apply", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result)
+                    if (data.success === true) {
+                        console.log(data)
+                        if (data.isVendor === true) {
+                            alert("Already a vendor")
+                        } else {
+                            setUserdata([data])
+                        }
+                        setErrors(false)
+                        setChecking(false)
+                    } else {
+                        // console.log("cashback id and pin is wrong")
+                        console.log(data)
+                        setChecking(false)
+
+
+                    }
+                })
+                .catch(error => {
+                    console.log('error', error)
+                    setChecking(false)
+                    setErrors({
+                        ...errors,
+                        status: true,
+                        msg: "A network error"
+                    })
+                });
+
+            // console.log(cashid + kpin)
+        }
+
+
+
+    }
+
+    const getBank = (data) => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+        console.log("Loading")
+
+        fetch("https://buzz-servre.herokuapp.com/api/v1/vendor/banks", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                data = JSON.parse(result);
+                if (data.success === true) {
+                    setBanks(data.data.data)
+                    console.log("Done")
+                }
+                // setBanks(data) 
+
+                // console.log(banks)
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    const submitForm = () => {
+
+        console.log(cashid + `\n` + kpin + `\n` + bankName + `\n` + accountNumber + `\n` + accountName + `\n` + nID)
+    }
+
     return (
         <>
+            <Navbar2 />
             <section className='container'>
                 <div className="vendor">
+                    {console.log(banks)}
+
 
                     <div className="row background">
+                        <div className='b-image'></div>
                         <div className="col-lg-6 col-md-6 col-12 ">
                             <div className='color'></div>
                             {/* <img src={image.one} alt="" /> */}
@@ -87,78 +209,119 @@ const Vendor = () => {
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className='form-content'>
                                 <h2>Become a vendor</h2>
-                                <form>
+                                <form onSubmit={handleSubmit(submitForm)}>
 
                                     {formStep === 0 && (
                                         <div>
                                             <div className="row">
-                                                <div className=' col-6 mt-5'>
-                                                    <label htmlFor="">Cash back ID:</label>
-                                                    <input type="text" className="form-control" placeholder="" aria-label="Cash Back ID" />
-                                                </div>
-                                                <div className='col-6 mt-5'>
-                                                    <label htmlFor="">Four digit pin:</label>
-                                                    <input type="text" className="form-control" placeholder="" aria-label="Cash Back ID" />
-                                                </div>
+                                                {userData.length < 1 && <>
+                                                    <div className=' col-6 mt-5'>
+                                                        <label htmlFor="">Cash back ID:</label>
+                                                        <input type="text" className="form-control" name='cashID' value={cashid} onChange={(e) => {
+                                                            setCashid(e.target.value)
+                                                        }} placeholder="" aria-label="Cash Back ID"
+                                                        />
+
+                                                    </div>
+                                                    <div className='col-6 mt-5'>
+                                                        <label htmlFor="">Four digit pin:</label>
+                                                        <input type="text" className="form-control" name='kPIN' value={kpin} onChange={(e) => setKpin(e.target.value)} placeholder="" aria-label="Cash Back ID" />
+                                                    </div></>
+                                                }
+                                                {!checking && <>
+                                                    {errors.status === true && <p className='errors'>{errors.msg}</p>}</>
+                                                }
+                                                {userData.length < 1 && <>
+                                                    {!checking && <button className='nextButton' onClick={checkData} style={{ margin: "20px 12px", marginBottom: 0, width: "100px", padding: "4px 20px" }}>Verify</button>}
+
+                                                    {checking && <button className='nextButton' onClick={checkData} style={{ margin: "20px 12px", marginBottom: 0, width: "150px", padding: "4px 20px" }} >Checking...</button>}</>
+                                                }
                                             </div>
 
-                                            <div>
-                                                <h5 style={{marginTop: "30px", fontWeight:"bold", color:"#3BB19B"}}>Personal Info:</h5>
-                                                <div className='mt-4'>
-                                                    <label htmlFor="">Name:</label>
-                                                    <input type="text" className="form-control" placeholder="" aria-label="Name" />
-                                                </div>
-                                                <div className='mt-4'>
-                                                    <label htmlFor="">Phone:</label>
-                                                    <input type="text" className="form-control" placeholder="" aria-label="Phone" />
-                                                </div>
-                                                <div className='mt-4'>
-                                                    <label htmlFor="">Email:</label>
-                                                    <input type="email" className="form-control" placeholder="" aria-label="Email" />
-                                                </div>
-                                            </div>
+                                            {userData.length > 0 && <>
+                                                <div>
+                                                    <h5 style={{ marginTop: "30px", fontWeight: "bold", color: "#3BB19B" }}>Personal Info:</h5>
+                                                    <div className='mt-4'>
+                                                        <label htmlFor="">Name:</label>
+                                                        <span> &nbsp;<b>{userData[0].name}</b></span>
+                                                        {console.log(userData)}
+                                                    </div>
+                                                    <div className='mt-4'>
+                                                        <label htmlFor="">Phone:</label>
+                                                        <span> &nbsp;<b>{userData[0].phone}</b></span>
+                                                        {/* <input type="text" className="form-control" value={phone} placeholder="" aria-label="Phone" disabled /> */}
+                                                    </div>
+                                                    <div className='mt-4'>
+                                                        <label htmlFor="">Email:</label>
+                                                        <span> &nbsp;<b>{userData[0].email}</b></span>
+                                                    </div>
+                                                </div></>
+                                            }
                                         </div>
                                     )}
 
                                     {formStep === 1 && (
                                         <div>
-                                            <h5 style={{marginTop: "30px", fontWeight:"bold", color:"#3BB19B"}}>Bank Details</h5>
+                                            <h5 style={{ marginTop: "30px", fontWeight: "bold", color: "#3BB19B" }}>Bank Details</h5>
                                             <hr style={{ padding: 0, margin: 0 }} />
                                             <div className='mt-4'>
                                                 <label htmlFor="">Bank:</label>
-                                                <input type="text" className="form-control" placeholder="" aria-label="Bank" />
+                                                {/* <input type="text" className="form-control" placeholder="" aria-label="Bank" /> */}
+                                                <select className="form-select" aria-label="Default select example" onChange={(e) => {setBankName(e.target.value)}}>
+                                                    <option value="">Select Bank</option>
+                                                    {banks.length > 0 ? <>{
+                                                        banks.map(bank => (
+                                                            <option value={bank.name}>{bank.name}</option>
+                                                        ))
+                                                    }</> : <><option>Please wait....</option></>}
+                                                </select>
                                             </div>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Account Number:</label>
-                                                <input type="text" className="form-control" placeholder="" aria-label="Account" />
+                                                <input type="number" className="form-control" aria-label="Account" maxlength="10" onChange={(e) => setAccountNumber(e.target.value)} onKeyUp={() =>{
+                                                    // if (accountNumber.length === 10 ) {
+                                                    //     setErrors({...errors, status:false, msg: ''});
+                                                    // }else {
+                                                    //     setErrors({
+                                                    //         ...errors,
+                                                    //         status: true,
+                                                    //         msg: "Account number should be 10 digits"
+                                                    //     }) 
+                                                    // }
+                                                    // {accountNumber.length === 10 ? setFormValid1(true) : setFormValid1(false)}
+                                                }} />
+                                                {accountNumber.length !== 10 && (accountNumber && <p className='errors'>Account number should be 10 digits</p>)}
                                             </div>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Bank Name:</label>
-                                                <input type="text" className="form-control" placeholder="" aria-label="BankName" />
+                                                <input type="text" className="form-control" onChange={(e) => setAccountName(e.target.value)} placeholder="" aria-label="BankName" onKeyUp={()=>{
+                                                    // {(accountName.length > 0) && (accountNumber.length === 0) ? setFormValid1(true) : setFormValid1(false)}
+                                                }}/>
+                                                {(accountName.length === 0) && <p className='errors'>Please Enter Your Bank Name</p>}
                                             </div>
                                         </div>
                                     )}
 
                                     {formStep === 2 && (
                                         <div>
-                                            <h5 style={{marginTop: "30px", fontWeight:"bold", color:"#3BB19B"}}>Identification</h5>
+                                            <h5 style={{ marginTop: "30px", fontWeight: "bold", color: "#3BB19B" }}>Identification</h5>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Means of Identification:</label>
-                                                <select className="form-select" aria-label="Default select example">
-                                                    <option selected></option>
-                                                    <option value="1">International Passport</option>
-                                                    <option value="2">National ID</option>
-                                                    <option value="3">Drivers License</option>
+                                                <select className="form-select" aria-label="Default select example" onChange={(e)=>setNID(e.target.value)}>
+                                                    <option value=""></option>
+                                                    <option value="InternationalPassport">International Passport</option>
+                                                    <option value="NationalID">National ID</option>
+                                                    <option value="DriversLicense">Drivers License</option>
                                                 </select>
                                             </div>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Image of ID:</label>
-                                                <input type="file" className="form-control" id="inputGroupFile02" />
+                                                <input type="file" className="form-control" id="inputGroupFile02" onChange={(e)=>setIdImage(e.target.value)} />
                                             </div>
-                                            <div className='mt-4'>
+                                            {/* <div className='mt-4'>
                                                 <label htmlFor="">Passport</label>
                                                 <input type="file" className="form-control" id="inputGroupFile02" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     )}
 
@@ -168,7 +331,9 @@ const Vendor = () => {
                                             className="mt-4">Send</button>
                                     </div> */}
 
-                                    {renderButton()}
+                                    {userData.length > 0 && <>{renderButton()}</>}
+
+
                                 </form>
                             </div>
                         </div>

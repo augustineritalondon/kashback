@@ -1,4 +1,5 @@
 export {default as Navbar} from './Navbar/Navbar'
+export {default as Navbar2} from './Navbar/Navbar2'
 export {default as Home} from './Home/Home'
 export {default as Vendor} from './Vendor/Vendor'
 export {default as Footer} from './Footer/Footer'
