@@ -31,13 +31,35 @@ const Home = () => {
                     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
                         <div className="carousel-inner">
                             <div className="carousel-item active">
-                                <img src={image.one} className="d-block w-100" alt="Image 1" />
+                                <div className='row'>
+                                    <div className='col-lg-6 col-md-6 col-12' style={{ marginTop: "6em" }}>
+                                        <h1>This is a dummy text</h1>
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis tempora reiciendis itaque ipsum ducimus iusto minima, maiores quidem natus distinctio aliquam aspernatur ipsam esse perferendis consectetur veniam suscipit et temporibus?</p>
+                                        <button>Download App</button>
+                                    </div>
+                                    <div className='col-lg-6 col-md-6 col-12'>
+                                        <img src={image.one} className="d-block w-100" alt="Image 1" />
+                                    </div>
+                                </div>
                             </div>
                             <div className="carousel-item">
-                                <img src={image.two} className="d-block w-100" alt="Image 2" />
+                                <div className="row">
+                                    <div className='col-lg-6 col-md-6 col-12' style={{ marginTop: "6em" }}>
+                                        <h1>This is a dummy text</h1>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed laborum corrupti hic, eaque quas quos possimus aut aperiam in culpa quaerat quae omnis dolore porro excepturi, officia obcaecati, doloremque sit?</p>
+                                        <button>Become A Vendor</button>
+                                    </div>
+                                    <div className='col-lg-6 col-md-6 col-12'>
+                                        <img src={image.two} className="d-block w-100" alt="Image 2" />
+                                    </div>
+                                </div>
                             </div>
                             <div className="carousel-item">
-                                <img src={image.three} className="d-block w-100" alt="Image 3" />
+                                <div className="row">
+                                    <div className='col-12'>
+                                        <img src={image.three} className="d-block w-100" alt="Image 3" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -358,14 +380,14 @@ const Home = () => {
                                         <i className="fas fa-phone-volume"></i>
                                         <h3>Call Us</h3>
                                         <p>+2349024123575
-                                            <br/>+2348063342192
-                                            <br/>+2349011684637</p>
+                                            <br />+2348063342192
+                                            <br />+2349011684637</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-12">
-                            <div className="contact-card-form" style={{padding: "35px"}}>
+                            <div className="contact-card-form" style={{ padding: "35px" }}>
                                 <form action="">
                                     <div className="row">
                                         <div className="col">
@@ -390,7 +412,7 @@ const Home = () => {
                                         </div>
                                     </div>
 
-                                    <button style={{padding:"8px 30px", backgroundColor: "orange", color: "black", border: "none"}}
+                                    <button style={{ padding: "8px 30px", backgroundColor: "orange", color: "black", border: "none" }}
                                         className="mt-4">Send</button>
                                 </form>
                             </div>
