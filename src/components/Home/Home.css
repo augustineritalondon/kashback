@@ -3,7 +3,7 @@ img{
 }
 
 .home img{
-    margin-top: 6em;
+    /* margin-top: 6em; */
     border-radius: 30px;
 }
 .carousel-control-prev-icon{
@@ -11,6 +11,106 @@ img{
 }
 .carousel-control-next-icon{
     display: none;
+}
+
+.carousel-content{
+    align-self: center;
+}
+
+.carousel-content h1{
+    font-size: 42px;
+    font-weight: bolder;
+    padding-right: 50px;
+    color: #0a3d62;
+}
+
+.carousel-content p{
+    font-size: 17.5px;
+    padding-right: 50px;
+}
+
+.carousel-content button{
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.carousel-content button {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 0.9rem 2rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #24b57a;
+    color: ghostwhite;
+   }
+   
+   .carousel-content button span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+   }
+   
+   .carousel-content button:hover span {
+    color: white;
+   }
+   
+   .carousel-content button::before,
+   .carousel-content button::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+   }
+   
+   .carousel-content button::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+   }
+   
+   .carousel-content button:hover::before {
+    transform: translate3d(100%, 0, 0);
+   }
+
+.cards{
+    display: flex;
+    justify-content: space-between!important;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.cards_bottom{
+    display: flex;
+    flex-direction: column;
+}
+
+.kash_card .kashback_cards{
+    background-color: #ffffff;
+    box-shadow: 0 0 25px rgb(0 0 0 / 6%);
+    border-radius: 5px;
+    padding: 22px 25px;
+    margin-top: 20px;
+}
+
+.kash_card .kash img{
+    width: 50px;
+    height: 50px;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .subHeader{
@@ -209,9 +309,27 @@ hr{
         max-width: 1140px;
     }
     .home img{
-        height: 70vh;
+        height: 60vh;
         margin-top: 8em;
     }
+    .cards{
+        flex-direction: row;
+    }
+    .kash_card .kashback_cards{
+        width: calc(33.33% - 13px);
+    }
+
+    .cards_bottom{
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .cards_bottom .kashback_cards{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 30px;    
+    }
+
     .advantages_carousel{
         display: none;
     }

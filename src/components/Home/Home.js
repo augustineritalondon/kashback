@@ -32,17 +32,20 @@ const Home = () => {
                         <div className="carousel-inner">
                             <div className="carousel-item active">
                                 <div className='row'>
-                                    <div className='col-lg-6 col-md-6 col-12' style={{ marginTop: "6em" }}>
-                                        <h1>This is a dummy text</h1>
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis tempora reiciendis itaque ipsum ducimus iusto minima, maiores quidem natus distinctio aliquam aspernatur ipsam esse perferendis consectetur veniam suscipit et temporibus?</p>
-                                        <button>Download App</button>
+                                    <div className='col-lg-5 col-md-6 col-12' style={{ display: "grid", height: "90vh" }}>
+                                        <div className='carousel-content'>
+                                            <h1>We’re the bank of the free</h1>
+                                            <p>We’re here to help you get the best out of your money, no strings attached. Welcome to your freedom!</p>
+                                            {/* <button>Get Kashback</button> */}
+                                            <button> <span>Get Kaskback</span></button>
+                                        </div>
                                     </div>
-                                    <div className='col-lg-6 col-md-6 col-12'>
+                                    <div className='col-lg-7 col-md-6 col-12'>
                                         <img src={image.one} className="d-block w-100" alt="Image 1" />
                                     </div>
                                 </div>
                             </div>
-                            <div className="carousel-item">
+                            {/* <div className="carousel-item">
                                 <div className="row">
                                     <div className='col-lg-6 col-md-6 col-12' style={{ marginTop: "6em" }}>
                                         <h1>This is a dummy text</h1>
@@ -60,7 +63,7 @@ const Home = () => {
                                         <img src={image.three} className="d-block w-100" alt="Image 3" />
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -70,6 +73,33 @@ const Home = () => {
                             <span className="carousel-control-next-icon" aria-hidden="true"></span>
                             <span className="visually-hidden">Next</span>
                         </button>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className='kash_card cards'>
+                        <div className="kash kashback_cards">
+                            <img src="https://img.icons8.com/ios-filled/50/24b57a/bank-card-front-side--v1.png" />
+                            <div>We’ll give you a free debit card. Order it right in the app.</div>
+                        </div>
+                        <div className="kash kashback_cards">
+                            <img src="https://img.icons8.com/ios-filled/50/24b57a/bank-card-front-side--v1.png" />
+                            <div>Create smart budgets to help you take control of your spending.</div>
+                        </div>
+                        <div className="kash kashback_cards">
+                            <img src="https://img.icons8.com/ios-filled/50/24b57a/bank-card-front-side--v1.png" />
+                            <div>See where your money goes without solving equations.</div>
+                        </div>
+                    </div>
+                    <div className='kash_card cards_bottom'>
+                        <div className="kash kashback_cards">
+                            <img src="https://img.icons8.com/ios-filled/50/24b57a/bank-card-front-side--v1.png" />
+                            <div>Pay absolutely nothing for sending money.</div>
+                        </div>
+                        <div className="kash kashback_cards">
+                            <img src="https://img.icons8.com/ios-filled/50/24b57a/bank-card-front-side--v1.png" />
+                            <div>Save automatically and we’ll pay you up to 15% interest every year.</div>
+                        </div>
                     </div>
                 </div>
 

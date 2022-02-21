@@ -22,6 +22,8 @@ const Vendor = () => {
     const [banks, setBanks] = useState([]);
     const [userData, setUserdata] = useState('');
     const [checking, setChecking] = useState(false);
+    // const [bname, setBname] = useState('');
+    const [bcode, setBcode] = useState('')
 
 
     const {
@@ -178,6 +180,7 @@ const Vendor = () => {
                 data = JSON.parse(result);
                 if (data.success === true) {
                     setBanks(data.data.data)
+                    // setBcode(data.data.data.code)
                     console.log("Done")
                 }
                 // setBanks(data) 
@@ -190,6 +193,57 @@ const Vendor = () => {
     const submitForm = () => {
 
         console.log(cashid + `\n` + kpin + `\n` + bankName + `\n` + accountNumber + `\n` + accountName + `\n` + nID)
+    }
+
+    const verifyBank = (data) => {
+
+        console.log(accountNumber)
+        console.log(bcode)
+
+        // var raw = "{\r\n    \"acc_number\":\"0690000032\",\r\n    \"bank_code\":\"044\"\r\n}";
+        var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+        var raw = {
+            acc_number: accountNumber,
+            bank_code: bcode
+        };
+
+        console.log("this is raw:" + raw.acc_number + "and " + raw.bank_code)
+
+        var requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(raw),
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("https://buzz-servre.herokuapp.com/api/v1/vendor/verify-bank", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                data = JSON.parse(result);
+                if(data.success === true){
+
+
+                    if(bankName.length > 0 || accountNumber > 0){
+                        let bankData = data.data;
+                        // let bankNewData = JSON.parse(bankData)
+                        console.log("this is the bank" + bankData)
+                        console.log(data)
+                        // console.log("this is the bank Data Here" + bankNewData)
+                    }else{
+                        console.log("The bank is empy")
+                    }
+                }
+            })
+            .catch(error => {
+                console.log('error', error)
+                setErrors({
+                    ...errors,
+                    status: error.status,
+                    msg: error.message
+                })
+            });
     }
 
     return (
@@ -267,7 +321,7 @@ const Vendor = () => {
                                             <div className='mt-4'>
                                                 <label htmlFor="">Bank:</label>
                                                 {/* <input type="text" className="form-control" placeholder="" aria-label="Bank" /> */}
-                                                <select className="form-select" aria-label="Default select example" onChange={(e) => {setBankName(e.target.value)}}>
+                                                <select className="form-select" aria-label="Default select example" onChange={(e) => { setBankName(e.target.value); setBcode(banks[0].code) }}>
                                                     <option value="">Select Bank</option>
                                                     {banks.length > 0 ? <>{
                                                         banks.map(bank => (
@@ -278,7 +332,19 @@ const Vendor = () => {
                                             </div>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Account Number:</label>
-                                                <input type="number" className="form-control" aria-label="Account" maxlength="10" onChange={(e) => setAccountNumber(e.target.value)} onKeyUp={() =>{
+                                                <input type="number" className="form-control" aria-label="Account" maxlength="10" onChange={(e) => {
+                                                    setAccountNumber(e.target.value)
+                                                    
+                                                }} onKeyUp={() => {
+                                                    if(accountNumber.length === 10){
+                                                        verifyBank();
+                                                    }else{
+                                                        setErrors({
+                                                            // ...errors,
+                                                            // status: true,
+                                                            // msg: 
+                                                        })
+                                                    }
                                                     // if (accountNumber.length === 10 ) {
                                                     //     setErrors({...errors, status:false, msg: ''});
                                                     // }else {
@@ -294,10 +360,10 @@ const Vendor = () => {
                                             </div>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Bank Name:</label>
-                                                <input type="text" className="form-control" onChange={(e) => setAccountName(e.target.value)} placeholder="" aria-label="BankName" onKeyUp={()=>{
+                                                <input type="text" className="form-control" onChange={(e) => setAccountName(e.target.value)} placeholder="" aria-label="BankName" onKeyUp={() => {
                                                     // {(accountName.length > 0) && (accountNumber.length === 0) ? setFormValid1(true) : setFormValid1(false)}
-                                                }}/>
-                                                {(accountName.length === 0) && <p className='errors'>Please Enter Your Bank Name</p>}
+                                                }} />
+                                                {/* {(accountName.length === 0) && <p className='errors'>Please Enter Your Bank Name</p>} */}
                                             </div>
                                         </div>
                                     )}
@@ -307,7 +373,7 @@ const Vendor = () => {
                                             <h5 style={{ marginTop: "30px", fontWeight: "bold", color: "#3BB19B" }}>Identification</h5>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Means of Identification:</label>
-                                                <select className="form-select" aria-label="Default select example" onChange={(e)=>setNID(e.target.value)}>
+                                                <select className="form-select" aria-label="Default select example" onChange={(e) => setNID(e.target.value)}>
                                                     <option value=""></option>
                                                     <option value="InternationalPassport">International Passport</option>
                                                     <option value="NationalID">National ID</option>
@@ -316,7 +382,7 @@ const Vendor = () => {
                                             </div>
                                             <div className='mt-4'>
                                                 <label htmlFor="">Image of ID:</label>
-                                                <input type="file" className="form-control" id="inputGroupFile02" onChange={(e)=>setIdImage(e.target.value)} />
+                                                <input type="file" className="form-control" id="inputGroupFile02" onChange={(e) => setIdImage(e.target.value)} />
                                             </div>
                                             {/* <div className='mt-4'>
                                                 <label htmlFor="">Passport</label>
