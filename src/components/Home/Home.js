@@ -5,6 +5,8 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './Home.css'
+import Lottie from 'lottie-web';
+import cashCard from '../../static/cash-or-card.json'
 
 const Home = () => {
 
@@ -21,6 +23,16 @@ const Home = () => {
             }
         }
     };
+
+    React.useEffect(() => {
+        Lottie.loadAnimation({
+            container: document.querySelector("#cash-or-card"),
+            animationData: cashCard,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+        });
+    }, []);
 
     return (
         <>
@@ -43,7 +55,8 @@ const Home = () => {
                                     <div className='col-lg-7 col-md-6 col-12 display_grid'>
                                         {/* <img src={image.one} className="d-block w-100" alt="Image 1" /> */}
                                         <div className='carousel-content svg_svg'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="1027.99206" height="529.55555"
+                                            <div id="cash-or-card" />
+                                            {/* <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="1027.99206" height="529.55555"
                                                 viewBox="0 0 1027.99206 529.55555" xmlnsXlink="http://www.w3.org/1999/xlink">
                                                 <title>online_transactions</title>
                                                 <rect x="305.99206" y="295.38557"
@@ -91,7 +104,7 @@ const Home = () => {
                                                 <path d="M278.50853,572.41192h-34v-34h34Zm-32.52174-1.47826h31.04348V539.89018H245.98679Z" transform="translate(-86.00397 -185.22222)" fill="#3f3d56" />
                                                 <rect x="774.50456" y="375.18969" width="28" height="28" fill="#d0cde1" />
                                                 <path d="M905.50853,572.41192h-34v-34h34Zm-32.52174-1.47826h31.04348V539.89018H872.98679Z" transform="translate(-86.00397 -185.22222)" fill="#3f3d56" />
-                                            </svg>
+                                            </svg> */}
                                         </div>
                                     </div>
                                 </div>
