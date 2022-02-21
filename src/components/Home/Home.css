@@ -2,9 +2,15 @@ img{
     width: 100%;
 }
 
+
 .home img{
     /* margin-top: 6em; */
     border-radius: 30px;
+}
+
+.home .svg_svg svg{
+    width: 100%;
+    margin-top: -80px;
 }
 .carousel-control-prev-icon{
     display: none;
@@ -312,6 +318,15 @@ hr{
         height: 60vh;
         margin-top: 8em;
     }
+    .display_grid{
+        display: grid;
+        height: 90vh;
+    }
+    .home .svg_svg svg{
+        width: 100%;
+        margin-top: 0;
+    }
+
     .cards{
         flex-direction: row;
     }
