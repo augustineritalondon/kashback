@@ -5,6 +5,7 @@ const image = {
     wallet: require("./img-get-wallet.png"),
     switching: require("./img-switching.png"),
     testimonialImage1: require("./IMG_9247.jpg"),
+    animImage: require("./Smartphone-removebg.png"),
 }
 
 export default image

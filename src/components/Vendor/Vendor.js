@@ -23,7 +23,8 @@ const Vendor = () => {
     const [userData, setUserdata] = useState('');
     const [checking, setChecking] = useState(false);
     // const [bname, setBname] = useState('');
-    const [bcode, setBcode] = useState('')
+    const [bcode, setBcode] = useState('');
+    const [verifiedBank, setVerifiedBank] = useState([]);
 
 
     const {
@@ -50,14 +51,14 @@ const Vendor = () => {
         } else if (formStep === 1) {
             return (
                 <>
-                    <button
+                    {/* <button
                         className="nextButton"
                         type="button"
                         value="Prev"
                         onClick={prevStep}
-                    >Prev</button>
+                    >Prev</button> */}
                     <button
-                        disabled={!((accountName.length > 0) && (accountNumber.length === 10))}
+                        disabled={!(accountNumber.length === 10)}
                         className="nextButton"
                         type="button"
                         value="Next"
@@ -68,12 +69,12 @@ const Vendor = () => {
         } else if (formStep === 2) {
             return (
                 <>
-                    <button
+                    {/* <button
                         className="nextButton"
                         type="button"
                         value="Prev"
                         onClick={prevStep}
-                    >Prev</button>
+                    >Prev</button> */}
                     <button
                         disabled={!((nID.length > 0) && (idImage.length > 0))}
                         className="nextButton"
@@ -178,11 +179,13 @@ const Vendor = () => {
             .then(response => response.text())
             .then(result => {
                 data = JSON.parse(result);
+                // const newData = data.data.data
                 if (data.success === true) {
                     setBanks(data.data.data)
                     // setBcode(data.data.data.code)
                     console.log("Done")
                 }
+
                 // setBanks(data) 
 
                 // console.log(banks)
@@ -192,7 +195,27 @@ const Vendor = () => {
 
     const submitForm = () => {
 
-        console.log(cashid + `\n` + kpin + `\n` + bankName + `\n` + accountNumber + `\n` + accountName + `\n` + nID)
+        console.log(cashid + `\n` + accountNumber + `\n` + bcode + `\n` + idImage )
+
+        var formdata = new FormData();
+        formdata.append(idImage);
+        formdata.append(accountNumber);
+        formdata.append(bcode);
+        formdata.append(cashid);
+
+        var requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch("https://buzz-servre.herokuapp.com/api/v1/vendor/register", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
     }
 
     const verifyBank = (data) => {
@@ -202,14 +225,14 @@ const Vendor = () => {
 
         // var raw = "{\r\n    \"acc_number\":\"0690000032\",\r\n    \"bank_code\":\"044\"\r\n}";
         var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Content-Type", "application/json");
 
         var raw = {
             acc_number: accountNumber,
             bank_code: bcode
         };
 
-        console.log("this is raw:" + raw.acc_number + "and " + raw.bank_code)
+        console.log("this is raw:" + raw.acc_number + "and bank:" + raw.bank_code)
 
         var requestOptions = {
             method: 'POST',
@@ -222,17 +245,18 @@ const Vendor = () => {
             .then(response => response.text())
             .then(result => {
                 data = JSON.parse(result);
-                if(data.success === true){
+                if (data.success === true) {
 
-
-                    if(bankName.length > 0 || accountNumber > 0){
-                        let bankData = data.data;
-                        // let bankNewData = JSON.parse(bankData)
-                        console.log("this is the bank" + bankData)
-                        console.log(data)
+                    if (bankName.length > 0 || accountNumber > 0) {
+                        console.log(data.data)
+                        setVerifiedBank([data.data])
                         // console.log("this is the bank Data Here" + bankNewData)
-                    }else{
-                        console.log("The bank is empy")
+                    } else {
+                        setErrors({
+                            ...errors,
+                            status: true,
+                            msg: "error, please check that your account number and bank is correct"
+                        })
                     }
                 }
             })
@@ -240,8 +264,8 @@ const Vendor = () => {
                 console.log('error', error)
                 setErrors({
                     ...errors,
-                    status: error.status,
-                    msg: error.message
+                    status: true,
+                    msg: "Network Issues!"
                 })
             });
     }
@@ -279,7 +303,7 @@ const Vendor = () => {
                                                     </div>
                                                     <div className='col-6 mt-5'>
                                                         <label htmlFor="">Four digit pin:</label>
-                                                        <input type="text" className="form-control" name='kPIN' value={kpin} onChange={(e) => setKpin(e.target.value)} placeholder="" aria-label="Cash Back ID" />
+                                                        <input type="password" className="form-control" name='kPIN' value={kpin} onChange={(e) => setKpin(e.target.value)} placeholder="" aria-label="Cash Back ID" />
                                                     </div></>
                                                 }
                                                 {!checking && <>
@@ -321,7 +345,11 @@ const Vendor = () => {
                                             <div className='mt-4'>
                                                 <label htmlFor="">Bank:</label>
                                                 {/* <input type="text" className="form-control" placeholder="" aria-label="Bank" /> */}
-                                                <select className="form-select" aria-label="Default select example" onChange={(e) => { setBankName(e.target.value); setBcode(banks[0].code) }}>
+                                                <select className="form-select" aria-label="Default select example" onChange={(e) => {
+                                                    setBankName(e.target.value);
+                                                    // console.log(e.target.value)
+
+                                                }}>
                                                     <option value="">Select Bank</option>
                                                     {banks.length > 0 ? <>{
                                                         banks.map(bank => (
@@ -334,11 +362,19 @@ const Vendor = () => {
                                                 <label htmlFor="">Account Number:</label>
                                                 <input type="number" className="form-control" aria-label="Account" maxlength="10" onChange={(e) => {
                                                     setAccountNumber(e.target.value)
-                                                    
+
+                                                    banks.find((e) => {
+                                                        if (e.name === bankName) {
+                                                            // console.log("this is bank name" + bankName, "this is ename" + e.name)
+                                                            var index = banks.indexOf(e);
+                                                            // console.log(banks[index].code)
+                                                            setBcode(banks[index].code)
+                                                        }
+                                                    })
                                                 }} onKeyUp={() => {
-                                                    if(accountNumber.length === 10){
+                                                    if (accountNumber.length === 10) {
                                                         verifyBank();
-                                                    }else{
+                                                    } else {
                                                         setErrors({
                                                             // ...errors,
                                                             // status: true,
@@ -358,13 +394,15 @@ const Vendor = () => {
                                                 }} />
                                                 {accountNumber.length !== 10 && (accountNumber && <p className='errors'>Account number should be 10 digits</p>)}
                                             </div>
-                                            <div className='mt-4'>
-                                                <label htmlFor="">Bank Name:</label>
-                                                <input type="text" className="form-control" onChange={(e) => setAccountName(e.target.value)} placeholder="" aria-label="BankName" onKeyUp={() => {
-                                                    // {(accountName.length > 0) && (accountNumber.length === 0) ? setFormValid1(true) : setFormValid1(false)}
-                                                }} />
-                                                {/* {(accountName.length === 0) && <p className='errors'>Please Enter Your Bank Name</p>} */}
-                                            </div>
+                                            {verifiedBank.length > 0 && <>
+                                                <div className='mt-4'>
+                                                    <label htmlFor="">Bank Name:</label>
+                                                    <input type="text" className="form-control" placeholder={verifiedBank[0].data.account_name} disabled aria-label="BankName" onKeyUp={() => {
+                                                        // {(accountName.length > 0) && (accountNumber.length === 0) ? setFormValid1(true) : setFormValid1(false)}
+                                                    }} />
+                                                    {/* {(accountName.length === 0) && <p className='errors'>Please Enter Your Bank Name</p>} */}
+                                                </div>
+                                            </>}
                                         </div>
                                     )}
 
