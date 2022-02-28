@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 import { Navbar2 } from '../../components';
 import image from '../../assets/images';
 import './Vendor.css'
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+
 
 const Vendor = () => {
 
@@ -26,6 +29,7 @@ const Vendor = () => {
     const [bcode, setBcode] = useState('');
     const [verifiedBank, setVerifiedBank] = useState([]);
 
+    const navigate = useNavigate();
 
     const {
         watch,
@@ -57,13 +61,21 @@ const Vendor = () => {
                         value="Prev"
                         onClick={prevStep}
                     >Prev</button> */}
-                    <button
+                    {checking === false ? <><button
                         disabled={!(accountNumber.length === 10)}
                         className="nextButton"
                         type="button"
                         value="Next"
                         onClick={nextStep}
+                    >Next</button></>: <>
+                    <button
+                        disabled={true}
+                        className="nextButton"
+                        type="button"
+                        value="Next"
+                        onClick={nextStep}
                     >Next</button>
+                    </>}
                 </>
             );
         } else if (formStep === 2) {
@@ -138,6 +150,16 @@ const Vendor = () => {
                         console.log(data)
                         if (data.isVendor === true) {
                             alert("Already a vendor")
+                            Swal.fire({
+                                title: "Error!",
+                                text: "This user is already a vendor.",
+                                icon: "error",
+                                confirmButtonText: "Go back to home"
+                            }).then(()=>{
+                                if(data.value){
+                                    navigate('/')
+                                }
+                            })
                         } else {
                             setUserdata([data])
                         }
@@ -198,10 +220,10 @@ const Vendor = () => {
         console.log(cashid + `\n` + accountNumber + `\n` + bcode + `\n` + idImage )
 
         var formdata = new FormData();
-        formdata.append(idImage);
-        formdata.append(accountNumber);
-        formdata.append(bcode);
-        formdata.append(cashid);
+        formdata.append("ID", idImage);
+        formdata.append("accountNo", accountNumber);
+        formdata.append("bank", bcode);
+        formdata.append("BeneficiaryID", cashid);
 
         var requestOptions = {
             method: 'POST',
@@ -212,10 +234,40 @@ const Vendor = () => {
         fetch("https://buzz-servre.herokuapp.com/api/v1/vendor/register", requestOptions)
             .then(response => response.text())
             .then(result => {
+                
+                let newResult = JSON.parse(result);
 
-                console.log(result)
+                if( newResult.success === true ){
+                    console.log("result is true", newResult.success)
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Your registration was successful.",
+                        icon: "success",
+                        confirmButtonText: "Continue"
+                    }).then((result) => {
+                        if(result.value){
+                            navigate('/');
+                        }
+                    })
+                }else{
+                    console.log("result is false", newResult)
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please check your network connection.",
+                        icon: "error",
+                        confirmButtonText: "Try again"
+                    })
+                }
+                console.log(newResult.success)
             })
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Please check your network connection.",
+                    icon: "error",
+                    confirmButtonText: "Try again"
+                })
+            });
     }
 
     const verifyBank = (data) => {
@@ -240,7 +292,7 @@ const Vendor = () => {
             headers: myHeaders,
             redirect: 'follow'
         };
-
+        setChecking(true)
         fetch("https://buzz-servre.herokuapp.com/api/v1/vendor/verify-bank", requestOptions)
             .then(response => response.text())
             .then(result => {
@@ -251,7 +303,9 @@ const Vendor = () => {
                         console.log(data.data)
                         setVerifiedBank([data.data])
                         // console.log("this is the bank Data Here" + bankNewData)
+                        setChecking(false)
                     } else {
+                        setChecking(false)
                         setErrors({
                             ...errors,
                             status: true,
@@ -262,6 +316,7 @@ const Vendor = () => {
             })
             .catch(error => {
                 console.log('error', error)
+                setChecking(false)
                 setErrors({
                     ...errors,
                     status: true,
@@ -394,6 +449,9 @@ const Vendor = () => {
                                                 }} />
                                                 {accountNumber.length !== 10 && (accountNumber && <p className='errors'>Account number should be 10 digits</p>)}
                                             </div>
+
+                                            {checking && <p>loading ...</p>}
+                                            
                                             {verifiedBank.length > 0 && <>
                                                 <div className='mt-4'>
                                                     <label htmlFor="">Bank Name:</label>
